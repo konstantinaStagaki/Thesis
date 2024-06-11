@@ -1,0 +1,39 @@
+.home {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background-image: url("../../../assets/admin-general.jpg");
+    background-size: cover;
+}
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  width: 98%;
+  height: 8%;
+  background-color:white;
+}
+
+.navbar-nav{
+  font-size: large;
+  font-weight: 600;
+
+}
+
+
+.container-fluid {
+  display: flex;
+}
+
+.ml-auto {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+}

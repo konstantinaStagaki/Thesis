@@ -1,0 +1,20 @@
+.admin-login {
+    min-height: 100vh;
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box; 
+    background-image: url('../../../assets/bg-admin.jpg');
+    background-size: cover; 
+    background-position: center; 
+}
+
+.admin-inner-login {
+    background-color: rgba(255, 255, 255, 0.3); 
+    color: black;
+    padding: 10%;
+    align-items: center;
+}

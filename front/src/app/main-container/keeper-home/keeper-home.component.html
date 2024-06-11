@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Edit Profile</title>
+</head>
+
+<body>
+  <app-navbar [user]="user"></app-navbar>
+  <div class="edit-profile-modal">
+    <div class="modal-content">
+      <div class="icon-container">
+        <img src="../../../assets/user.png" alt="User Icon">
+      </div>
+      <h2>Edit Profile</h2>
+      <form (ngSubmit)="saveChanges()">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input id="username" type="text" [(ngModel)]="user.username" name="username" disabled />
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" type="email" [(ngModel)]="user.email" name="email" disabled />
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input id="password" [type]="passwordVisable ? 'text' : 'password'" [(ngModel)]="user.password" name="password" />
+            <button type="button" class="btn btn-secondary" (click)="togglePasswordVisibility()">
+              {{ passwordVisable ? 'Hide' : 'Show' }} Password
+            </button>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first_name">First Name:</label>
+            <input id="first_name" type="text" [(ngModel)]="user.first_name" name="first_name" />
+          </div>
+          <div class="form-group">
+            <label for="last_name">Last Name:</label>
+            <input id="last_name" type="text" [(ngModel)]="user.last_name" name="last_name" />
+          </div>
+          <div class="form-group">
+            <label for="birth_date">Birth Date:</label>
+            <input id="birth_date" type="date" [(ngModel)]="user.birth_date" name="birth_date" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select id="gender" [(ngModel)]="user.gender" name="gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="user_type">User Type:</label>
+            <select id="user_type" [(ngModel)]="user.user_type" name="user_type">
+              <option value="standard">Standard</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="country">Country:</label>
+            <input id="country" type="text" [(ngModel)]="user.country" name="country" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">City:</label>
+            <input id="city" type="text" [(ngModel)]="user.city" name="city" />
+          </div>
+          <div class="form-group">
+            <label for="address">Address:</label>
+            <input id="address" type="text" [(ngModel)]="user.address" name="address" />
+          </div>
+          <div class="form-group">
+            <label for="url">URL:</label>
+            <input id="url" type="text" [(ngModel)]="user.url" name="url" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="job">Job:</label>
+            <input id="job" type="text" [(ngModel)]="user.job" name="job" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input id="phone" type="text" [(ngModel)]="user.phone" name="phone" />
+          </div>
+          <div class="form-group">
+            <label for="lat">Latitude:</label>
+            <input id="lat" type="number" [(ngModel)]="user.lat" name="lat" disabled />
+          </div>
+          <div class="form-group">
+            <label for="lon">Longitude:</label>
+            <input id="lon" type="number" [(ngModel)]="user.lon" name="lon" disabled />
+          </div>
+        </div>
+        <div class="form-actions">
+          <button *ngIf="!editMode" type="button" class="btn btn-primary" (click)="editMode = true">Edit</button>
+          <button *ngIf="editMode" type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <app-navbar [user]="user"></app-navbar>
+  <div class="home">
+    <div class="statistics">
+      <p>Total Bookings: {{ bookings }}</p>
+      <p>Total days of petkeeping: {{ days }}</p>
+    </div>
+    <div class="card">
+      <div class="review-summary">
+        <h2>Reviews</h2>
+        <div class="average-rating">
+          <span class="star">&#9733;</span>
+          <span class="average">4</span>
+          <span class="total-reviews"> Based on 10</span>
+        </div>
+        <div class="rating-distribution">
+          <div class="rating-bar">
+            <span>5 star</span>
+            <div class="bar"><div class="filled" style="width: 80%;"></div></div>
+            <span>5</span>
+          </div>
+          <div class="rating-bar">
+            <span>4 star</span>
+            <div class="bar"><div class="filled" style="width: 60%;"></div></div>
+            <span>1</span>
+          </div>
+          <div class="rating-bar">
+            <span>3 star</span>
+            <div class="bar"><div class="filled" style="width: 40%;"></div></div>
+            <span>3</span>
+          </div>
+          <div class="rating-bar">
+            <span>2 star</span>
+            <div class="bar"><div class="filled" style="width: 20%;"></div></div>
+            <span>2</span>
+          </div>
+          <div class="rating-bar">
+            <span>1 star</span>
+            <div class="bar"><div class="filled" style="width: 10%;"></div></div>
+            <span>1</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-list">
+        <div class="review-item" *ngFor="let review of reviews">
+          <img src="../../../assets/user.png" alt="Avatar" class="avatar">
+          <div class="review-content">
+            <div class="review-header">
+              <h3>{{ getOwnerName(review.owner_id) }}</h3>
+              <p-rating [ngModel]="review.rating" [readonly]="true" [cancel]="false"></p-rating>
+            </div>
+            <p>{{ review.comment }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

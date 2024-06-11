@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+</head>
+
+<body>
+    <div class="navbar navbar-expand-sm">
+        <div class="outer-container">
+            <a class="navbar-brand" href="#">
+              <img src="../../../assets/logo.png" alt="Logo" class="logo">
+            </a>
+          </div>
+          <div class="container-fluid">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/admin-home">Users</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/stats">Statistics</a>
+              </li>
+              <li>
+                  <button  name="logout-button" type="button" class="btn btn-primary mb-auto" (click)="onLogout()">
+                
+                  <svg fill="#ffff36" height="24px" width="24px" version="1.1" id="XMLID_173_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                  viewBox="0 0 24 26" xml:space="preserve">
+                    <g id="logout">
+                      <g>
+                        <path d="M15,24H0V2h15v8h-2V4H2v18h11v-6h2V24z M18.4,18.7L17,17.3l3.3-3.3H5v-2h15.3L17,8.7l1.4-1.4L24,13L18.4,18.7z"/>
+                      </g>
+                    </g>
+                    </svg>
+                </button>
+              </li>
+            </ul>  
+          </div>
+      </div>
+    
+   
+    
+    <div class="home">
+      <h1>Users</h1>
+      <div class="card">
+        <p-table [value]="users" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Type</th>
+                    <th>Action</th> <!-- Added "Action" column -->
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-user>
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>{{ user.user_type }}</td>
+                    <td>
+                        <p-button (click)="deleteUser(user)">
+                          <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.17065 4C9.58249 2.83481 10.6937 2 11.9999 2C13.3062 2 14.4174 2.83481 14.8292 4" stroke="#000000" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M20.5 6H3.49988" stroke="#000000" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M18.3735 15.3991C18.1965 18.054 18.108 19.3815 17.243 20.1907C16.378 21 15.0476 21 12.3868 21H11.6134C8.9526 21 7.6222 21 6.75719 20.1907C5.89218 19.3815 5.80368 18.054 5.62669 15.3991L5.16675 8.5M18.8334 8.5L18.6334 11.5" stroke="#000000" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M9.5 11L10 16" stroke="#000000" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M14.5 11L14 16" stroke="#000000" stroke-width="1.5" stroke-linecap="round"/>
+                          </svg>
+                        </p-button>                      
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div> 
+  </div>
+    
+</body>
+</html>

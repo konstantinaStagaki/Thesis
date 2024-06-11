@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <!-- <app-navbar [user]="id"></app-navbar> -->
+  <div class="main-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <img src="../../../assets/logo.png" alt="Logo">
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+            <li><a [routerLink]="'/keeper/' + user.id">Profile</a></li>
+            <li><a [routerLink]="'/keeper/' + user.id+ '/bookings'">Bookings</a></li>
+            <li><a [routerLink]="'/keeper/' + user.id+ '/reviews'">Reviews</a></li>
+            <li><a [routerLink]="'/keeper/' + user.id+ '/messages'">Messages</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <div class="content">
+      <header class="header">
+        <div class="header-left">
+          <h1>Bookings</h1>
+        </div>
+        <div class="header-right">
+            <button  name="logout-button" type="button" class="btn btn-primary mb-auto" (click)="onLogout()">
+          
+                <svg fill="#000000" height="24px" width="24px" version="1.1" id="XMLID_173_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                viewBox="0 0 24 26" xml:space="preserve">
+                  <g id="logout">
+                    <g>
+                      <path d="M15,24H0V2h15v8h-2V4H2v18h11v-6h2V24z M18.4,18.7L17,17.3l3.3-3.3H5v-2h15.3L17,8.7l1.4-1.4L24,13L18.4,18.7z"/>
+                    </g>
+                  </g>
+                  </svg>
+              </button>
+        </div>
+      </header>
+      <div class="table-container">
+        <table class="bookings-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Owner's name</th>
+              <th>Pet type</th>
+              <th>Start date</th>
+              <th>End date</th>
+              <th>Price</th>
+              <th>Status</th>
+              <th>Message</th>
+              <th>Accept</th>
+              <th>Reject</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let booking of bookings">
+              <td>{{ booking.id }}</td>
+              <td>{{ getOwnerName(booking.owner_id) }}</td>
+              <td>{{ getPetType(booking.owner_id) }}</td>
+              <td>{{ booking.start_date | date:'yyyy-MM-dd' }}</td>
+              <td>{{ booking.end_date | date:'yyyy-MM-dd' }}</td>
+              <td>{{ booking.price }}</td>
+              <td>{{ booking.status }}</td>
+              <td>
+                <button class="btn" (click)="showDialogMessage()">Message</button>
+                <p-dialog header="Header" [(visible)]="messageVisible" [modal]="true" [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+                  <div class="dialog-content">
+                    <label for="message" class="font-bold block mb-2"> Message </label>
+                    <input type="text" id="message" [(ngModel)]="message" placeholder="Enter your message">
+                  </div>
+                  <ng-template pTemplate="footer">
+                    <button class="btn" (click)="SendMessage(booking)">Send</button>
+                  </ng-template>
+                </p-dialog>
+              </td>
+              <td>
+                <button class="btn" (click)="onAccept(booking)">Accept</button>
+              </td>
+              <td>
+                <button class="btn" (click)="onReject(booking)">Reject</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

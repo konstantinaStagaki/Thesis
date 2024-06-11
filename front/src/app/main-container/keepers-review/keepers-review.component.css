@@ -1,0 +1,115 @@
+body {
+  font-family: Arial, sans-serif;
+  background-image: url('../../../assets/keeper.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.home {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.statistics {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.review-summary {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.average-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.average-rating .star {
+  color: gold;
+  margin-right: 5px;
+}
+
+.rating-distribution {
+  margin-top: 10px;
+}
+
+.rating-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.rating-bar span {
+  width: 50px;
+  text-align: left;
+}
+
+.rating-bar .bar {
+  flex: 1;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0 10px;
+}
+
+.rating-bar .filled {
+  background-color: #ffc107;
+  height: 10px;
+}
+
+.review-list {
+  margin-top: 20px;
+}
+
+.review-item {
+  display: flex;
+  margin-bottom: 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.review-content {
+  flex: 1;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.review-header h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.review-header p-rating {
+  margin-left: 10px;
+}
