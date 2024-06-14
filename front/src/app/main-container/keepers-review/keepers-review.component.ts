@@ -23,6 +23,7 @@ export class KeepersReviewComponent implements OnInit {
 
   user = new User();
   owners: User[] = [];
+  keeper: User = new User();
   reviews: any;
   days: number = 0;
   bookings: number = 0;
@@ -34,24 +35,69 @@ export class KeepersReviewComponent implements OnInit {
     private datePipe: DatePipe
   ) { }
 
+
+
+
+  // ngOnInit(): void {
+  //   this.route.paramMap.subscribe(params => {
+  //     this.userService.getOwners().subscribe(
+  //       data => {
+  //         this.owners = data;
+  //       },
+  //       error => {
+  //         console.error('Error fetching owner data', error);
+  //       }
+  //     );
+
+  //     const userId = params.get('user_id');
+  //     if (userId) {
+  //       this.loadKeeperData(parseInt(userId, 10));
+  //     }
+  //   });
+  // }
+
+
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.userService.getOwners().subscribe(
-        data => {
-          this.owners = data;
-        },
-        error => {
-          console.error('Error fetching owner data', error);
-        }
-      );
-
-      const userId = params.get('user_id');
+      const userId = params.get('user_id'); // convert id to a number
       if (userId) {
-        this.loadKeeperData(parseInt(userId, 10));
+        this.userService.getKeeper(parseInt(userId, 10)).subscribe(
+          data => {
+            this.keeper = data; // Assign the emitted value to user
+            this.user = data; // Assign to user for navigation
+            console.log(data);
+          },
+          error => {
+            console.error('Error fetching keeper data', error);
+          }
+        );
+
       }
     });
-  }
+        this.userService.getOwners().subscribe(
+          data => {
+            this.owners = data;
+          },
+          error => {
+            console.error('Error fetching owner data', error);
+          }
+        );
+  
+        this.route.paramMap.subscribe(params => {
+          const userId = params.get('user_id');
+          if (userId) {
+            this.loadKeeperData(parseInt(userId, 10));
+          }
+        }
 
+    
+       ); 
+        
+    }
+
+   
+  
+  
   loadKeeperData(userId: number) {
     this.userService.GetReviewsByKeeper(userId).subscribe(
       data => {
@@ -85,5 +131,10 @@ export class KeepersReviewComponent implements OnInit {
     return this.owners.find(owner => owner.id === id)?.first_name;
   }
 
+  onLogout() {
+    this.authService.logout();
+  }
+
+  
   
 }

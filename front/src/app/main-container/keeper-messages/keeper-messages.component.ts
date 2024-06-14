@@ -3,6 +3,7 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 import { Message } from 'src/app/models/message.model';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/user.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-keeper-messages',
@@ -14,7 +15,9 @@ export class KeeperMessagesComponent {
   keeper_id: number | undefined;
   messages: Message[] = [];
 
-  constructor(private userService: UserServiceService,private route : ActivatedRoute) { }
+  constructor(private userService: UserServiceService,
+    private route : ActivatedRoute,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -39,4 +42,9 @@ export class KeeperMessagesComponent {
       );
     });
   }
+
+  onLogout() {
+    this.authService.logout();
+  }
+
 }

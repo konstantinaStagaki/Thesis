@@ -1,183 +1,146 @@
-<!-- Description: Home page for the user. -->
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Home Page</title>
 </head>
+
 <body>
-<div class="navbar navbar-expand-sm">
-  <div class="container-fluid">
-    <div class="flex flex-row align-items-center justify-content-between">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="" >Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="'bookings'">Bookings</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['add-pet']">Add Pet</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['find-keeper']">Book</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['messages']">Messages</a>
-          </li>
-        </ul>
-        <div class="flex-item ">
-            <button type="button" class="btn btn-primary" (click)="onLogout()">Logout</button>
+    <div class="navbar navbar-expand-sm">
+        <div class="container-fluid">
+            <div class="flex flex-row align-items-center justify-content-between">
+                <img src="../../../assets/logo.png" href="/visitor-find-keepers" alt="Logo" class="logo">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="'bookings'">Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['add-pet']">Add Pet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['find-keeper']">Book</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['messages']">Messages</a>
+                    </li>
+                    <li class="nav-item">
+        
+                        <button  name="logout-button" type="button" class="btn btn-primary mb-auto" (click)="onLogout()">
+                        
+                          <svg fill="#000000" height="24px" width="24px" version="1.1" id="XMLID_173_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                          viewBox="0 0 24 26" xml:space="preserve">
+                            <g id="logout">
+                              <g>
+                                <path d="M15,24H0V2h15v8h-2V4H2v18h11v-6h2V24z M18.4,18.7L17,17.3l3.3-3.3H5v-2h15.3L17,8.7l1.4-1.4L24,13L18.4,18.7z"/>
+                              </g>
+                            </g>
+                            </svg>
+                        </button>
+                        
+                      </li>
+                </ul>
+                
+            </div>
         </div>
     </div>
-  </div>
-
-</div>
-<div class="home">
-
-<div class="flex flex-row">
-    <!-- View Mode -->
-    <div class="flex-item" *ngIf="!editMode">
-        <p>Username: {{ user.username }}        </p>
-        <p>Email: {{ user.email }}          </p>
-        <p>Password: {{ user.password }}    </p>
-        <p>Firstname: {{ user.first_name }} </p>
-        <p>Lastname: {{ user.last_name }}   </p>
-        <p>Gender: {{ user.gender }}        </p>
-        <p>Birthdate: {{ user.birth_date }} </p>
-        <p>Country: {{ user.country }}      </p>
-        <p>City: {{ user.city }}            </p>
-        <p>Address: {{ user.address }}      </p>
-        <p>Url:{{ user.url }}               </p>
-        <p>Job:{{ user.job }}               </p>
-        <p>Phone: {{ user.phone }}          </p>
-        <p>Lat : {{ user.lat }}, Lon : {{ user.lon }}</p>
-    </div>
-
-    <!-- Edit Mode -->
-    <div class="flex flex-column" *ngIf="editMode">
-        <div class="flex-item-">
-            <label for="name">Username    </label>
-            <input id="name" type="text" pInputText [disabled]="true" [(ngModel)]="user.username" />
+    <div class="home">
+        <div class="profile-card">
+            <div class="profile-header">
+                <img src="../../../assets/user.png" alt="Avatar" class="avatar">
+                <h2>Edit Profile</h2>
+            </div>
+            <form #profileForm="ngForm" (ngSubmit)="saveChanges()">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" [(ngModel)]="user.username" name="username" [disabled]="!editMode">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" [(ngModel)]="user.email" name="email" [disabled]="!editMode">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="{{ passwordVisable ? 'text' : 'password' }}" id="password" [(ngModel)]="user.password" name="password" [disabled]="!editMode">
+                        <button type="button" class="btn-show-password" (click)="togglePasswordVisibility()">
+                            {{ passwordVisable ? 'Hide' : 'Show' }} Password
+                        </button>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        <input type="text" id="firstname" [(ngModel)]="user.first_name" name="firstname" [disabled]="!editMode">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" id="lastname" [(ngModel)]="user.last_name" name="lastname" [disabled]="!editMode">
+                    </div>
+                    <div class="form-group">
+                        <label for="birthdate">Birth Date</label>
+                        <input type="date" id="birthdate" [(ngModel)]="birthDate" name="birthdate" [disabled]="!editMode">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" [(ngModel)]="user.gender" name="gender" required [disabled]="!editMode">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input type="text" id="country" [(ngModel)]="user.country" name="country" [disabled]="!editMode">
+                    </div>
+                    <div class="form-group">
+                        <label for="type">User Type</label>
+                        <input type="text" id="type" [(ngModel)]="user.user_type" name="type" disabled>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" [(ngModel)]="user.city" name="city" [disabled]="!editMode">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" [(ngModel)]="user.address" name="address" [disabled]="!editMode">
+                    </div>
+                    <div class="form-group">
+                        <label for="url">URL</label>
+                        <input type="text" id="url" [(ngModel)]="user.url" name="url" [disabled]="!editMode">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="job">Job</label>
+                        <input type="text" id="job" [(ngModel)]="user.job" name="job" [disabled]="!editMode">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="text" id="phone" [(ngModel)]="user.phone" name="phone" [disabled]="!editMode">
+                    </div>
+                    <div class="form-group">
+                        <label for="lat">Latitude</label>
+                        <input type="text" id="lat" [(ngModel)]="user.lat" name="lat" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="lon">Longitude</label>
+                        <input type="text" id="lon" [(ngModel)]="user.lon" name="lon" disabled>
+                    </div>
+                </div>
+                <div class="form-actions">
+                  <button *ngIf="!editMode" type="button" class="btn btn-primary" (click)="editMode = true">Edit</button>
+                  <button *ngIf="editMode" type="submit" class="btn btn-primary" onclick="saveChanges()">Save</button>
+                </div>
+            </form>
         </div>
-
-        <div class="flex-item-">
-            <label for="email">Email  </label>
-            <input id="email" type="email" pInputText [(ngModel)]="user.email" [disabled]="true"/>
-        </div>
-        <div class="flex-item-">
-            <label for="password">Password    </label>
-            <input
-                id="password"
-                type="{{ passwordVisable ? 'text' : 'password' }}"
-                pInputText
-                [(ngModel)]="user.password"
-            />
-            <button type="button" id="buttonpwd" class="btn btn-primary" (click)="togglePasswordVisibility()">
-                {{ passwordVisable ? 'Hide' : 'Show' }} Pass
-            </button>
-        </div>
-    
-    <div class="flex-item-">
-      <label for="firstname">Firstname  </label>
-      <input
-        id="firstname"
-        type="text"
-        pInputText
-        [(ngModel)]="user.first_name"
-      />
     </div>
-
-    <div class="flex-item-">
-      <label for="lastname">Lastname    </label>
-      <input
-        id="lastname"
-        type="text"
-        pInputText
-        [(ngModel)]="user.last_name"
-      />
-    </div>
-
-    <div class="flex-item-">
-            <label for="gender">Gender  </label>
-            <select
-              class="form-control"
-              id="gender"
-              name="gender"
-              [(ngModel)]="user.gender"
-              required
-            >
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-            </select>
-    </div>
-
-    <div class="flex-item-">
-      <label for="birthdate">Birthdate  </label>
-      <input
-        id="birthdate"
-        type="date"
-        pInputText
-        [(ngModel)]="birthDate"
-      />
-    </div>
-
-    <div class="flex-item-">
-      <label for="country">Country  </label>
-      <input id="country" type="text" pInputText [(ngModel)]="user.country" />
-    </div>
-
-    <div class="flex-item-">
-      <label for="city">City    </label>
-      <input id="city" type="text" pInputText [(ngModel)]="user.city" />
-    </div>
-
-    <div class="flex-item-">
-      <label for="address">Address  </label>
-      <input id="address" type="text" pInputText [(ngModel)]="user.address" />
-    </div>
-
-    <div class="flex-item-">
-      <label for="url">Url  </label>
-      <input id="url" type="text" pInputText [(ngModel)]="user.url" />
-    </div>
-
-    <div class="flex-item-">
-      <label for="job">Job  </label>
-      <input id="job" type="text" pInputText [(ngModel)]="user.job" />
-    </div>
-
-    <div class="flex-item-">
-      <label for="phone">Phone  </label>
-      <input id="phone" type="text" pInputText [(ngModel)]="user.phone" />
-    </div>
-
-    <div class="flex-item-">
-      <label for="lat">Lat  </label>
-      <input id="lat" type="text" pInputText [disabled]="true" [(ngModel)]="user.lat" />
-    </div>
-
-    <div class="flex-item-">
-      <label for="lon">Lon  </label>
-      <input id="lon" type="text" pInputText [disabled]="true" [(ngModel)] ="user.lon" />
-    </div>
-  </div>
-</div>
-  <!-- Edit Button -->
-  <div class="flex-item-" *ngIf="!editMode">
-    <button
-      type="button"
-      class="btn btn-primary"
-      pButton
-      label="Edit"
-      (click)="editMode = true"
-    ></button>
-  </div>
-
-  <!-- Save Button -->
-  <div class="flex-item" *ngIf="editMode">
-    <button type="button" class="btn btn-primary" pButton label="Save" (click)="saveChanges()"></button>
-  </div>
-</div>
-
 </body>
+
+</html>

@@ -83,7 +83,9 @@ export class KeeperHomeComponent implements OnInit{
     this.passwordVisable = !this.passwordVisable;
   }
 
-
+  onLogout() {
+    this.authService.logout();
+  }
 
 
 }
