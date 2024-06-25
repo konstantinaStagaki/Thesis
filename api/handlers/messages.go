@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"359/domain"
+	"thesis/domain"
 
 	"github.com/gofiber/fiber/v2"
 )

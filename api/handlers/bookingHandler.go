@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"359/domain"
 	"encoding/json"
+	"thesis/domain"
 
 	"github.com/gofiber/fiber/v2"
 )

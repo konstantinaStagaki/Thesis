@@ -1,9 +1,9 @@
 package core
 
 import (
-	"359/domain"
-	"359/ports"
 	"fmt"
+	"thesis/domain"
+	"thesis/ports"
 )
 
 type Service struct {

@@ -1,6 +1,6 @@
 package core
 
-import "359/domain"
+import "thesis/domain"
 
 func (srv *Service) CreateMessage(message *domain.Message) *domain.Message {
 	err := srv.db.CreateMessage(message)

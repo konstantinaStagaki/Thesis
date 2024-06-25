@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"359/domain"
+	"thesis/domain"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"

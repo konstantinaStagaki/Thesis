@@ -1,4 +1,4 @@
-module 359
+module thesis
 
 go 1.20
 

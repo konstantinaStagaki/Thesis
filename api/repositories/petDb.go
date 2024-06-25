@@ -1,10 +1,10 @@
 package repositories
 
 import (
-	"359/domain"
 	"errors"
 	"regexp"
 	"strings"
+	"thesis/domain"
 )
 
 func (db *Db) SavePet(pet *domain.Pet) error {

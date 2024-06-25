@@ -1,6 +1,6 @@
 package repositories
 
-import "359/domain"
+import "thesis/domain"
 
 func (db *Db) CreateMessage(message *domain.Message) error {
 	return db.Model(message).Create(message).Error

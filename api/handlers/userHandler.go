@@ -1,10 +1,10 @@
 package handlers
 
 import (
-	"359/domain"
-	"359/ports"
 	"encoding/json"
 	"fmt"
+	"thesis/domain"
+	"thesis/ports"
 
 	"github.com/gofiber/fiber/v2"
 )

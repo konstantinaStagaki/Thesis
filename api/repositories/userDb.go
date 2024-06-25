@@ -1,9 +1,9 @@
 package repositories
 
 import (
-	"359/domain"
 	"errors"
 	"strings"
+	"thesis/domain"
 )
 
 func (db *Db) SaveOwner(user *domain.Owner) error {

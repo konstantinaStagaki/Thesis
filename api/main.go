@@ -1,11 +1,11 @@
 package main
 
 import (
-	"359/core"
-	"359/handlers"
-	"359/repositories"
-	"359/server"
 	"log"
+	"thesis/core"
+	"thesis/handlers"
+	"thesis/repositories"
+	"thesis/server"
 
 	"time"
 

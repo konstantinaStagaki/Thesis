@@ -1,8 +1,8 @@
 package repositories
 
 import (
-	"359/domain"
 	"fmt"
+	"thesis/domain"
 )
 
 func (db *Db) GetBooking(booking *domain.Booking) error {

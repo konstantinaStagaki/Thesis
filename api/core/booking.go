@@ -1,8 +1,8 @@
 package core
 
 import (
-	"359/domain"
 	"fmt"
+	"thesis/domain"
 )
 
 func (srv *Service) GetBooking(booking *domain.Booking) *domain.Booking {

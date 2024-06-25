@@ -1,13 +1,13 @@
 package core
 
 import (
-	"359/domain"
 	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
 	"net/url"
 	"sort"
+	"thesis/domain"
 )
 
 func (srv *Service) RegisterOwner(user *domain.Owner) *domain.Owner {
