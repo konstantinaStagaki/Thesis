@@ -1,4 +1,4 @@
-.page {
+/* .page {
     min-height: 100vh;
     width: 100%;
     display: flex;
@@ -11,4 +11,144 @@
     background-size: cover;
     background-position: center;
 }
+*/
+.body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("../../../assets/bg2.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+}
+
+.outer-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5%;
+    padding: 0.2rem;
+}
+
+.container-fluid{ 
+    display: flex;
+    justify-content: end;
+}
   
+.navbar {
+    background-color:white;
+    opacity: 0.7;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+  
+.logo {
+    height: 70px; 
+    border-radius: 60px;
+    margin-left: 30px;
+}
+
+.navbar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+  
+.nav-item {
+    margin-right: 20px;
+}
+  
+.nav-link {
+    text-decoration: none;
+    color: black;
+}
+  
+.nav-link:hover {
+    background-color:#ffe49d;
+}
+  
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+}
+
+ 
+
+/* Card styling */
+.card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 800px;
+  max-width: 100%;
+  margin: 20px;
+}
+
+.flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+
+.flex-column {
+  flex-direction: column;
+}
+
+
+.p-fluid .p-field {
+  margin-bottom: 15px;
+}
+
+
+.p-field label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.p-field input[type="text"], .p-field select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button[pButton] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+button[pButton]:hover {
+  background-color: #ffcd48;
+}

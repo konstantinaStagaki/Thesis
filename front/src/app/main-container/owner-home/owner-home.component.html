@@ -7,45 +7,46 @@
 
 <body>
     <div class="navbar navbar-expand-sm">
+        <div class="outer-container">
+            <a class="navbar-brand" href="/owner-home">
+              <img src="../../../assets/logo.png" alt="Logo" class="logo">
+            </a>
+          </div>
         <div class="container-fluid">
-            <div class="flex flex-row align-items-center justify-content-between">
-                <img src="../../../assets/logo.png" href="/visitor-find-keepers" alt="Logo" class="logo">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="'bookings'">Bookings</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['add-pet']">Add Pet</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['find-keeper']">Book</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['messages']">Messages</a>
-                    </li>
-                    <li class="nav-item">
-        
-                        <button  name="logout-button" type="button" class="btn btn-primary mb-auto" (click)="onLogout()">
-                        
-                          <svg fill="#000000" height="24px" width="24px" version="1.1" id="XMLID_173_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-                          viewBox="0 0 24 26" xml:space="preserve">
-                            <g id="logout">
-                              <g>
-                                <path d="M15,24H0V2h15v8h-2V4H2v18h11v-6h2V24z M18.4,18.7L17,17.3l3.3-3.3H5v-2h15.3L17,8.7l1.4-1.4L24,13L18.4,18.7z"/>
-                              </g>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="'bookings'">Bookings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['add-pet']">Add Pet</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['find-keeper']">Book</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['messages']">Messages</a>
+                </li>
+                <li>
+                    <button  name="logout-button" type="button" class="btn btn-primary mb-auto" (click)="onLogout()">
+                    
+                        <svg fill="#000000" height="24px" width="24px" version="1.1" id="XMLID_173_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                        viewBox="0 0 24 26" xml:space="preserve">
+                        <g id="logout">
+                            <g>
+                            <path d="M15,24H0V2h15v8h-2V4H2v18h11v-6h2V24z M18.4,18.7L17,17.3l3.3-3.3H5v-2h15.3L17,8.7l1.4-1.4L24,13L18.4,18.7z"/>
                             </g>
-                            </svg>
-                        </button>
-                        
-                      </li>
-                </ul>
-                
-            </div>
+                        </g>
+                        </svg>
+                    </button>
+                    
+                </li>
+            </ul>
         </div>
     </div>
+    
     <div class="home">
         <div class="profile-card">
             <div class="profile-header">

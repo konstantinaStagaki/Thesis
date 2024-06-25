@@ -5,6 +5,7 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { Message } from 'src/app/models/message.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { Review } from 'src/app/models/review.model';
 
 @Component({
@@ -14,7 +15,11 @@ import { Review } from 'src/app/models/review.model';
 })
 export class OwnerBookingsComponent {
 
-  constructor(private userService: UserServiceService,private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private userService: UserServiceService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService : AuthService) {}
   visible: boolean = false;
   messageVisible: boolean = false;
   message: string = '';
@@ -166,5 +171,8 @@ export class OwnerBookingsComponent {
       }
     }
     return '';
+  }
+  onLogout() {
+    this.authService.logout();
   }
 }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UserServiceService } from 'src/app/services/user-service.service';
-
+import { AuthService } from 'src/app/services/auth.service';
 import { Pet } from '../../models/pet.model';
 
 @Component({
@@ -15,7 +15,12 @@ export class OwnerAddPetComponent {
   petTypes: any[] | undefined; 
 
   owner_id: number | undefined;
-  constructor(private fb: FormBuilder,private route: ActivatedRoute,private userService: UserServiceService) { }
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private userService: UserServiceService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     // Generate a random 10-digit string
@@ -76,6 +81,10 @@ export class OwnerAddPetComponent {
     else {
       console.log('Invalid form');
     }
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 }
 
