@@ -13,8 +13,8 @@ import { Pet } from '../../models/pet.model';
 export class OwnerAddPetComponent {
   addPetForm: FormGroup | any;
   petTypes: any[] | undefined; 
-
   owner_id: number | undefined;
+  
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,

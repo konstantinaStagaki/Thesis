@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { Message } from 'src/app/models/message.model';
 import { ActivatedRoute } from '@angular/router';
+
+import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user.model';
 
 
@@ -13,9 +15,13 @@ import { User } from 'src/app/models/user.model';
 export class OwnerMessagesComponent implements OnInit {
     owner: User | undefined;
     owner_id: number | undefined;
-    messages: Message[] = [];
+      messages: Message[] = [];
 
-    constructor(private userService: UserServiceService,private route : ActivatedRoute) { }
+    constructor(
+      private userService: UserServiceService,
+      private route : ActivatedRoute,
+      private authService : AuthService
+    ) { }
 
     ngOnInit(): void {
       this.route.paramMap.subscribe(params => {
@@ -40,5 +46,11 @@ export class OwnerMessagesComponent implements OnInit {
         );
       });
     }
+
+
+    onLogout() {
+      this.authService.logout();
+    }
+  
 }
 

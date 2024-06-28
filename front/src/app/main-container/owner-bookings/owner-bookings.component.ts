@@ -14,56 +14,58 @@ import { Review } from 'src/app/models/review.model';
   styleUrl: './owner-bookings.component.css'
 })
 export class OwnerBookingsComponent {
+    visible: boolean = false;
+    messageVisible: boolean = false;
+    message: string = '';
+    reviewMessage: string = '';
+    bookings: Booking [] = [];
+    value1!: number;
+    owners : User[] = [];
+    keepers : User[] = [];
+    userId: number = 0; // Initialize with a default value
 
-  constructor(
-    private userService: UserServiceService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private authService : AuthService) {}
-  visible: boolean = false;
-  messageVisible: boolean = false;
-  message: string = '';
-  reviewMessage: string = '';
-  bookings: Booking [] = [];
-  value1!: number;
-  owners : User[] = [];
-  keepers : User[] = [];
-  ngOnInit(): void {
+    constructor(
+      private userService: UserServiceService,
+      private route: ActivatedRoute,
+      private router: Router,
+      private authService : AuthService
+    ) {}
 
-    this.route.paramMap.subscribe(params => {
-      const userId = params.get('user_id') ; // convert id to a number
-      this.userService.getOwnerBookings(parseInt(userId || '0', 10)).subscribe(
-        data => {
-          this.bookings = data; // Assign the emitted value to user
-          console.log(data);
-        },
-        error => {
-          console.error('Error fetching owner data', error);
-        }
-      );
-    });
-
-    this.userService.getOwners().subscribe(
-      data => {
-        this.owners = data; // Assign the emitted value to user
-        console.log(data);
-      },
-      error => {
-        console.error('Error fetching owner data', error);
-      }
-    );
-
-    this.userService.getKeepers().subscribe(
-      data => {
-        this.keepers = data; // Assign the emitted value to user
-        console.log(data);
-      },
-      error => {
-        console.error('Error fetching owner data', error);
-      }
-    );
-  }
-
+    ngOnInit(): void {
+      this.route.paramMap.subscribe(params => {
+        this.userId = parseInt(params.get('user_id') || '0', 10);
+  
+        this.userService.getOwnerBookings(this.userId).subscribe(
+          data => {
+            this.bookings = data;
+            console.log(data);
+          },
+          error => {
+            console.error('Error fetching owner data', error);
+          }
+        );
+  
+        this.userService.getOwners().subscribe(
+          data => {
+            this.owners = data;
+            console.log(data);
+          },
+          error => {
+            console.error('Error fetching owner data', error);
+          }
+        );
+  
+        this.userService.getKeepers().subscribe(
+          data => {
+            this.keepers = data;
+            console.log(data);
+          },
+          error => {
+            console.error('Error fetching keeper data', error);
+          }
+        );
+      });
+    }
   changeStatus(booking: Booking) {
     if (booking.status !== 'accepted') {
       alert('You can only change the status of accepted bookings');
