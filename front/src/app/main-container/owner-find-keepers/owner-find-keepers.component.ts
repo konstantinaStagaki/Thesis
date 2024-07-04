@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user.model';
 import { Pet } from 'src/app/models/pet.model';
 import { Booking } from 'src/app/models/booking.model';
 import { DatePipe } from '@angular/common';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-owner-find-keepers',
@@ -37,7 +38,12 @@ export class OwnerFindKeepersComponent {
   endDate: Date = new Date();
   diffDays: number = 1;
 
-  constructor(private userService : UserServiceService,private route: ActivatedRoute,private datepipe : DatePipe ) {}
+  constructor(
+    private userService : UserServiceService,
+    private route: ActivatedRoute,
+    private datepipe : DatePipe,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -47,6 +53,7 @@ export class OwnerFindKeepersComponent {
       this.userService.getAvailableKeepers(parseInt(userId || '0', 10)).subscribe(
         data => {
           this.keepers = data; 
+          console.log(data);
         },
         error => {
           console.error('Error fetching owner data', error);
@@ -202,4 +209,7 @@ export class OwnerFindKeepersComponent {
     return formatBirthday as string;
   }
 
+  onLogout() {
+    this.authService.logout();
+  }
 }

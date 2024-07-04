@@ -48,7 +48,7 @@ export class OwnerBookingsComponent {
         this.userService.getOwners().subscribe(
           data => {
             this.owners = data;
-            console.log(data);
+            // console.log(data);
           },
           error => {
             console.error('Error fetching owner data', error);

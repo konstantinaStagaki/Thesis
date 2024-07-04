@@ -6,14 +6,14 @@
 <body>
     <div class="navbar navbar-expand-sm">
         <div class="outer-container">
-          <a class="navbar-brand" [routerLink]="['/owner-home']">
+          <a class="navbar-brand" [routerLink]="['/owner', userId,]">
             <img src="../../../assets/logo.png" alt="Logo" class="logo">
           </a>
         </div>
         <div class="container-fluid">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/owner', userId, 'profile']">Profile</a>
+              <a class="nav-link" [routerLink]="['/owner', userId, ]">Profile</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" [routerLink]="['/owner', userId, 'bookings']">Bookings</a>
