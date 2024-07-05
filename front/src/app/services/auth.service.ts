@@ -41,15 +41,16 @@ export class AuthService {
       }));
   }
 
+  logoutadmin() {
+    this.curr_user = 0;
+    this.router.navigate(['/admin-login']);
+  }
   logout() {
     this.curr_user = 0;
     this.router.navigate(['/login']);
   }
 
-  logoutadmin() {
-    this.curr_user = 0;
-    this.router.navigate(['/admin-login']);
-  }
+  
   isAuthenticated() {
     return this.curr_user != 0;
   }

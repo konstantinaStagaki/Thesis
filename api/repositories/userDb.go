@@ -2,6 +2,7 @@ package repositories
 
 import (
 	"errors"
+	"fmt"
 	"strings"
 	"thesis/domain"
 )
@@ -162,4 +163,34 @@ func (db *Db) GetReviewsByKeeper(keeper *domain.Keeper) ([]domain.Review, error)
 	var reviews []domain.Review
 	err := db.Model(&domain.Review{}).Where("keeper_id = ?", keeper.Id).Find(&reviews).Error
 	return reviews, err
+}
+
+func (db *Db) GetKeepersByOwnerMessage(owner *domain.Owner) ([]domain.Keeper, error) {
+	var keepers []domain.Keeper
+	err := db.Raw(`
+		SELECT DISTINCT keepers.* 
+		FROM messages 
+		JOIN keepers ON messages.to_id = keepers.id 
+		WHERE messages.from_id = ? AND messages.from_name = ?`, owner.Id, owner.Username).Scan(&keepers).Error
+	if err != nil {
+		fmt.Println("Error querying unique receivers:", err)
+		return nil, err
+	}
+
+	return keepers, nil
+}
+
+func (db *Db) GetOwnersByKeeperMessage(keeper *domain.Keeper) ([]domain.Owner, error) {
+	var owners []domain.Owner
+	err := db.Raw(`
+		SELECT DISTINCT owners.*
+		FROM messages
+		JOIN owners ON messages.to_id = owners.id
+		WHERE messages.from_id = ? AND messages.from_name = ?`, keeper.Id, keeper.Username).Scan(&owners).Error
+	if err != nil {
+		fmt.Println("Error querying unique receivers:", err)
+		return nil, err
+	}
+
+	return owners, nil
 }

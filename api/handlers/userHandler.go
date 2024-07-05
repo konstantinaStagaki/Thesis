@@ -31,7 +31,7 @@ func (handler *Handler) RegisterOwner(c *fiber.Ctx) error {
 		return c.Status(resp.StatusCode).JSON(resp.Message)
 	}
 
-	return c.SendStatus(resp.StatusCode)
+	return c.Status(resp.StatusCode).JSON(resp)
 }
 
 func (handler *Handler) UpdateOwner(c *fiber.Ctx) error {
@@ -105,7 +105,7 @@ func (handler *Handler) RegisterKeeper(c *fiber.Ctx) error {
 
 	resp := handler.Srv.RegisterKeeper(user)
 	if resp.StatusCode != 200 {
-		return c.Status(resp.StatusCode).JSON(resp.Message)
+		return c.Status(resp.StatusCode).JSON(resp)
 	}
 
 	return c.SendStatus(resp.StatusCode)
@@ -305,4 +305,34 @@ func (handler *Handler) GetPetKeepersDays(c *fiber.Ctx) error {
 	}
 
 	return c.Status(200).JSON(keepingDays)
+}
+
+func (handler *Handler) GetOwnersByKeeperMessage(c *fiber.Ctx) error {
+	id, err := c.ParamsInt("id") // keeper id
+	if err != nil {
+		return c.SendStatus(fiber.StatusBadRequest)
+	}
+	keeper := handler.Srv.GetKeeper(&domain.Keeper{Id: uint(id)})
+
+	owner, err := handler.Srv.GetOwnersByKeeperMessage(keeper)
+	if err != nil {
+		return c.Status(404).JSON(fmt.Sprintf("Unable to retrieve owners: %v", err))
+	}
+
+	return c.Status(200).JSON(owner)
+}
+
+func (handler *Handler) GetKeepersByOwnerMessage(c *fiber.Ctx) error {
+	id, err := c.ParamsInt("id") // owner id
+	if err != nil {
+		return c.SendStatus(fiber.StatusBadRequest)
+	}
+	owner := handler.Srv.GetOwner(&domain.Owner{Id: uint(id)})
+
+	keeper, err := handler.Srv.GetKeepersByOwnerMessage(owner)
+	if err != nil {
+		return c.Status(404).JSON(fmt.Sprintf("Unable to retrieve keepers: %v", err))
+	}
+
+	return c.Status(200).JSON(keeper)
 }

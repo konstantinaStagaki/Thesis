@@ -179,20 +179,24 @@ export class RegisterComponent {
 
       this.userService.saveKeeper(user).subscribe(
         (data) => {
-          console.log(data);
-        },
-        (error) => {
-          console.log(error);
+          if (data) {
+            alert('Registration successful');
+            this.router.navigate(['/login']);
+            return true;
+          }
+          alert('Registration failed');
           return false;
         }
       );
     } else if (this.type === 'owner') {
       this.userService.saveOwner(user).subscribe(
         (data) => {
-          console.log(data);
-        },
-        (error) => {
-          console.log(error);
+          if (data) {
+            alert('Registration successful');
+            this.router.navigate(['/login']);
+            return true;
+          }
+          alert('Registration failed');
           return false;
         }
       );
@@ -207,11 +211,11 @@ export class RegisterComponent {
         console.log('invalid form');
         return;
       }
-
+      alert('Registration failed');
       console.log('valid form');
-      this.router.navigate(['/login']);
     } else {
       console.log('invalid form');
+      alert('Fill all the fields correctly')
     }
   }
 }

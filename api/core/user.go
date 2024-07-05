@@ -377,3 +377,19 @@ func (srv *Service) GetReviewsByKeeper(keeper *domain.Keeper) ([]domain.Review, 
 	}
 	return reviews, nil
 }
+
+func (srv *Service) GetKeepersByOwnerMessage(owner *domain.Owner) ([]domain.Keeper, error) {
+	keepers, err := srv.db.GetKeepersByOwnerMessage(owner)
+	if err != nil {
+		return nil, err
+	}
+	return keepers, nil
+}
+
+func (srv *Service) GetOwnersByKeeperMessage(keeper *domain.Keeper) ([]domain.Owner, error) {
+	owners, err := srv.db.GetOwnersByKeeperMessage(keeper)
+	if err != nil {
+		return nil, err
+	}
+	return owners, nil
+}

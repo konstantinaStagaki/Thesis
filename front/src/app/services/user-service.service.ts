@@ -125,4 +125,12 @@ export class UserServiceService {
     return this.http.get<number>(`http:////127.0.0.1:3000/users/keepers/` + id + `/bookingsNumber`);
   }
 
+  GetOwnersByKeeperMessages(id: number) {
+    return this.http.get<User[]>(`http:////127.0.0.1:3000/users/keepers/` + id + `/messagedOwners`);
+  }
+
+  GetKeepersByOwnerMessages(id: number) {
+    return this.http.get<User[]>(`http:////127.0.0.1:3000/users/owners/` + id + `/messagedKeepers`);
+  }
+
 }

@@ -16,7 +16,9 @@ interface Column {
 })
 export class AdminHomeComponent {
 
-  constructor(private userService : UserServiceService , private authService : AuthService) {}
+  constructor(
+    private userService : UserServiceService , 
+    private authService : AuthService) {}
   users: User[] = []; 
 
   ngOnInit(): void {

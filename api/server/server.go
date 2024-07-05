@@ -42,12 +42,13 @@ func (server *Server) Initialize() {
 
 	// Owner endpoints
 	owners := users.Group("/owners")
-	owners.Get("/", server.handler.GetOwners)                       // Retrieves all owners
-	owners.Post("/", server.handler.RegisterOwner)                  // Registers a new owner
-	owners.Put("/:id", server.handler.UpdateOwner)                  // Updates owner information
-	owners.Get("/:id", server.handler.GetOwner)                     // Retrieves owner information by ID
-	owners.Delete("/:id", server.handler.DeleteOwner)               // Deletes an owner
-	owners.Get("/:id/findKeepers", server.handler.AvailableKeepers) // Finds available keepers for an owner
+	owners.Get("/", server.handler.GetOwners)                                   // Retrieves all owners
+	owners.Post("/", server.handler.RegisterOwner)                              // Registers a new owner
+	owners.Put("/:id", server.handler.UpdateOwner)                              // Updates owner information
+	owners.Get("/:id", server.handler.GetOwner)                                 // Retrieves owner information by ID
+	owners.Delete("/:id", server.handler.DeleteOwner)                           // Deletes an owner
+	owners.Get("/:id/findKeepers", server.handler.AvailableKeepers)             // Finds available keepers for an owner
+	owners.Get("/:id/messagedKeepers", server.handler.GetKeepersByOwnerMessage) // Retrieves keepers for an owner
 
 	// base on orderBy param in the query, it will order the keepers by distance or duration to get there by car
 	// using the google maps api
@@ -65,6 +66,7 @@ func (server *Server) Initialize() {
 	keepers.Get("/:id/reviews", server.handler.GetReviewsByKeeper)                 // Retrieves reviews for a keeper
 	keepers.Get("/:id/bookingsNumber", server.handler.GetBookingsNumberByKeeperId) // Retrieves the number of bookings for a keeper
 	keepers.Get("/:id/petKeepersDays", server.handler.GetPetKeepersDays)           // Retrieves the number of days a pet has been with keepers
+	keepers.Get("/:id/messagedOwners", server.handler.GetOwnersByKeeperMessage)    // Retrieves owners for a keeper
 
 	// Pet endpoints
 	pets := app.Group("/pets")

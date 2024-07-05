@@ -28,12 +28,28 @@
 }
 
 
-.container-fluid {
-  display: flex;
-}
-
 .ml-auto {
   display: flex;
   flex-direction: column;
   margin-left: auto;
 }
+
+
+.outer-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5%;
+  padding: 1rem;
+}
+.container-fluid{ 
+  display: flex;
+  justify-content: end;
+}
+
+.navbar-brand .logo {
+  height: 70px; 
+  border-radius: 60px;
+  margin-left: 30px;
+}
+

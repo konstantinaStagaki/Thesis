@@ -22,6 +22,8 @@ type Service interface {
 	UpdateKeeper(keeper *domain.Keeper) *domain.Keeper
 	GetKeeper(keeper *domain.Keeper) *domain.Keeper
 	DeleteKeeper(keeper *domain.Keeper) *domain.Response
+	GetKeepersByOwnerMessage(owner *domain.Owner) ([]domain.Keeper, error)
+	GetOwnersByKeeperMessage(keeper *domain.Keeper) ([]domain.Owner, error)
 
 	SavePet(pet *domain.Pet) *domain.Pet
 	GetPets() ([]domain.Pet, error)
@@ -69,6 +71,8 @@ type Db interface {
 	UpdateKeeper(keeper *domain.Keeper) error
 	GetKeeper(keeper *domain.Keeper) error
 	DeleteKeeper(keeper *domain.Keeper) error
+	GetKeepersByOwnerMessage(owner *domain.Owner) ([]domain.Keeper, error)
+	GetOwnersByKeeperMessage(keeper *domain.Keeper) ([]domain.Owner, error)
 
 	SavePet(pet *domain.Pet) error
 	GetPets() ([]domain.Pet, error)
@@ -116,6 +120,8 @@ type Handler interface {
 	GetKeeper(c *fiber.Ctx) error
 	GetKeepers(c *fiber.Ctx) error
 	DeleteKeeper(c *fiber.Ctx) error
+	GetKeepersByOwnerMessage(c *fiber.Ctx) error
+	GetOwnersByKeeperMessage(c *fiber.Ctx) error
 
 	RegisterPet(c *fiber.Ctx) error
 	UpdatePet(c *fiber.Ctx) error
